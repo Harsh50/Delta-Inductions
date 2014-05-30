@@ -1,0 +1,30 @@
+body
+{
+	background-color: black;}
+	#ele
+	{
+		height:60px;
+		width: 80px;
+		background-color:whitesmoke;;
+		position: absolute;
+		left:350px;
+		top:150px;
+ 		}
+ 	#speed
+ 	{
+ 		position:absolute;
+ 		left:500px;
+ 		top: 460px;
+ 		font-family: sans-serif;
+ 		padding-top: 10px;
+ 		
+ 		}
+ 		h3{ color:dodgerblue;}
+ 		input[type="range"]{
+ 			border-radius:5px;
+ 			shadow: inset 0 0 5px #333;
+ 			background-color:#999;
+ 			height:10px;
+ 			}
+ 			span{
+ 				float:right;}
