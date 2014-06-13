@@ -1,0 +1,208 @@
+	<!DOCTYPE HTML>
+	 
+	<html>
+	<head>
+	    <meta charset="utf-8">
+	    <title>Text editor</title>
+	    <style>
+	    body
+	    {
+	    background-color: lightcyan;}
+	#textarea {
+	    width: 500px;
+	    height: 300px;
+	    
+	}
+	 
+	#display {
+	    width: 600px;
+	background-color:white;    border:1px solid black;
+	    border-radius:5px;
+	    word-break:break-all;
+	    visibility: hidden;
+	    padding:10px;
+	   
+	}
+	#colour
+	{
+	position: absolute;
+	left: 300px;
+	top: 29px;
+	height: 250px;
+	width: 170px;
+	visibility: hidden;
+	z-index: 1;
+	}
+	#output{
+	position: absolute;
+	top:80px;
+	left:55%;
+	border:1px solid black;
+	width:500px;
+	visibility: hidden;
+	padding:10px;
+	border-radius:5px;
+	word-break:break-all;
+	}
+	#c{ visibility: hidden;}
+	#codes
+	{
+	
+	float:right;
+	position: absolute;
+	
+		border:1px solid black;
+	width:500px;
+	visibility: hidden;
+	padding:10px;
+	border-radius:5px;
+	word-break:break-all;
+	}
+</style>
+     
+	     
+	     
+	</head>
+	<body onload="InitColorPalette()">
+	     
+	    <!-- functionalities -->
+	    <input type="button" value="B" onclick="insert_tag('(**s)','(/s**)')" />
+	    <input type="button" value="I" onclick="insert_tag('(**i)','(/i**)')" />
+	    <input type="button" value="U" onclick="insert_tag('(**u)','(/u**)')" />
+            <input type="button" value="Paragraph" onclick="insert_tag('(**p)','(/p**)')"/>
+            <input type="button" value="Dold" onclick="d('(**s)','(/s**)');" />
+           <input type="button" value="Ditalics" onclick="d('(**i)','(/i**)');" />
+           <input type="button" value="Colour Picker" onclick="show_colour();" />
+           <input type="button" value="Compress" onclick="compress();" />
+ <select id="fontname" onchange="Select(this.id);">
+  <option value="Font">Font</option>
+  <option value="a">Arial</option>
+  <option value="c">Courier</option>
+  <option value="g">Georgia</option>
+</select>
+<select  id="fontsize" onchange="Select(this.id);">
+  <option value="Size">Size</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>  
+</select>
+	    <br /><br /><br />
+           
+	     
+	    <!-- Text area -->
+	    <textarea id="textarea" onkeyup="hide();"></textarea>
+	    <br />
+	     
+	    <!-- Submit button -->
+	    <input type="button" value="Show text" onclick="view();" />
+	     
+	    <!-- Empty div to put the text in -->
+	    <div id="display">
+	    </div>
+	    <div><div id="output"></div>
+	    <br />
+	    <input type="button" value="View all character codes" onclick="view_code();" id="c"/></div>
+	    <br /><br />
+	    <div id="codes"></div>
+
+<div id="colour">
+<table border="1" cellpadding="1" cellspacing="1">
+<tr>
+<td id="#FFFFFF"  ></td>
+<td id="#FFCCCC" ></td>
+<td id="#FFCC99" ></td>
+<td id="#FFFF99" ></td>
+<td id="#FFFFCC" ></td>
+<td id="#99FF99" ></td>
+<td id="#99FFFF" ></td>
+<td id="#CCFFFF" ></td>
+<td id="#CCCCFF" ></td>
+<td id="#FFCCFF" ></td>
+</tr>
+<tr>
+<td id="#CCCCCC" ></td>
+<td id="#FF6666" ></td>
+<td id="#FF9966" ></td>
+<td id="#FFFF66" ></td>
+<td id="#FFFF33" ></td>
+<td id="#66FF99"  ></td>
+<td id="#33FFFF" ></td>
+<td id="#66FFFF"  ></td>
+<td id="#9999FF" ></td>
+<td id="#FF99FF" ></td>
+</tr>
+<tr>
+<td id="#C0C0C0" ></td>
+<td id="#FF0000"  ></td>
+<td id="#FF9900" ></td>
+<td id="#FFCC66"  ></td>
+<td id="#FFFF00" ></td>
+<td id="#33FF33" ></td>
+<td id="#66CCCC" ></td>
+<td id="#33CCFF" ></td>
+<td id="#6666CC" ></td>
+<td id="#CC66CC" ></td>
+</tr>
+<tr>
+<td id="#999999"></td>
+<td id="#CC0000" ></td>
+<td id="#FF6600" ></td>
+<td id="#FFCC33" ></td>
+<td id="#FFCC00" ></td>
+<td id="#33CC00" ></td>
+<td id="#00CCCC" ></td>
+<td id="#3366FF" ></td>
+<td id="#6633FF" ></td>
+<td id="#CC33CC" ></td>
+</tr>
+<tr>
+<td id="#666666" ></td>
+<td id="#990000" ></td>
+<td id="#CC6600"></td>
+<td id="#CC9933" ></td>
+<td id="#999900" ></td>
+<td id="#009900" ></td>
+<td id="#339999" ></td>
+<td id="#3333FF" ></td>
+<td id="#6600CC" ></td>
+<td id="#993399" ></td>
+</tr>
+<tr>
+<td id="#333333" ></td>
+<td id="#660000" ></td>
+<td id="#993300" ></td>
+<td id="#996633" ></td>
+<td id="#666600" ></td>
+<td id="#006600" ></td>
+<td id="#336666" ></td>
+<td id="#000099" ></td>
+<td id="#333399" ></td>
+<td id="#663366"></td>
+</tr>
+<tr>
+<td id="#000000"  ></td>
+<td id="#330000" ></td>
+<td id="#663300" ></td>
+<td id="#663333" ></td>
+<td id="#333300" ></td>
+<td id="#003300" ></td>
+<td id="#003333" ></td>
+<td id="#000066" ></td>
+<td id="#330099" ></td>
+<td id="#330033" ></td>
+</tr>
+</table>
+
+</div>
+  <script src="compress.js"></script>
+	    <script type="text/javascript" src="editor.js">
+
+
+
+	    </script>
+	</body>
+	</html>
