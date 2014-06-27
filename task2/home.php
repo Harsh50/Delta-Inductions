@@ -7,16 +7,19 @@ if(isset($_FILES['photo']['name']))
 		if(!$_FILES['photo']['error'])
 	   {
 	   	 $file_name=$_FILES['photo']['tmp_name'];
-	   	 if($_FILES['photo']['size'] > (2*1024000)) //can't be larger than 200 KB
+	         if($_FILES['photo']['size'] > (2*1024000))
+	   	 $file_error="* File size should be less than 2 MB!";
+	   	 
+	   	 else if( !(($_FILES["image"]["type"] == "image/jpeg")|| ($_FILES["image"]["type"] == "image/jpg")
+		|| ($_FILES["image"]["type"] == "image/pjpeg")
+		|| ($_FILES["image"]["type"] == "image/x-png")
+		|| ($_FILES["image"]["type"] == "image/png")) )
 		  {
-			global $file_error;
-			$file_error="* File size should be less than 2 MB!";
+			
+			$file_error="* File format invalid!";
 			
 		  }
 		  else{
-		
-		  
-		  
 		  $dirpath=getcwd()."/"."uploads/".$rollno."/";
 		  if(!file_exists($dirpath))
 		  mkdir($dirpath);
