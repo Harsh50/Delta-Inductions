@@ -18,6 +18,6 @@ body{
 	}</style>
 	</head>
 <body>
-<h3> You have been successfully logged out. <a href="login.php">Click here</a> to login</h3></body>
+<h3> You have been successfully logged out. <a href="index.php">Click here</a> to login</h3></body>
 </body>
 </html>
