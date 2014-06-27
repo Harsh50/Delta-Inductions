@@ -173,8 +173,12 @@ if(isset($_FILES['photo']['name']))
           a:hover{
           	background-color:lightblue;}
           	span{
-          		font-size: 18px;
+          		font-size: 20px;
           		color: red;
+          		font-weight:bold;
+position:absolute;
+top:60%;
+left:63%;
           		}
        </style>
        <script type="text/javascript">
