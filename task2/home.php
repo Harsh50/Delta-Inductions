@@ -17,7 +17,7 @@ if(isset($_FILES['photo']['name']))
 		
 		  
 		  
-		  $dirpath=getcwd()."\\"."uploads\\".$rollno."\\";
+		  $dirpath=getcwd()."/"."uploads/".$rollno."/";
 		  if(!file_exists($dirpath))
 		  mkdir($dirpath);
 		 
