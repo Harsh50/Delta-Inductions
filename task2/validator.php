@@ -71,30 +71,32 @@ function validatePass()
 	  
 function validateRoll()
 {
+$roll=htmlspecialchars(trim($_POST["roll"]));
 	 if(!preg_match("/^[0-9]{9}$/",$roll))
  {
  	global $roll_error;
  $roll_error="* It should be a 9 digit number";
  return false;
  }
-	$db=mysqli_connect("localhost","root","","students");
+	$db=mysqli_connect("mysql1.000webhost.com","a5835261_harsh","nittrichy5","a5835261_student");
+        $roll=mysqli_real_escape_string($db,$_POST["roll"]);
 	if(mysqli_connect_errno())
 	{
 		echo "Error connecting to database:" . mysqli_connect_error();
 		exit();
 		}
-	$roll=mysqli_real_escape_string($db,$_POST["roll"]);
+	
 	$sql="SELECT * from login where roll='".$roll."'";
 	$data=mysqli_query($db,$sql);
-	if(mysqli_num_rows($data)==1){ global $user_error;
-		$user_error="* This roll no is already registered!";
+	if(mysqli_num_rows($data)==1){ global $roll_error;
+		$roll_error="* This roll no is already registered!";
 		return false;
-			
+
 			}
-		
-	
+
+
 	return true;
-	
+
 	}	
 function validateCaptcha()
 {
