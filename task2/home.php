@@ -1,7 +1,60 @@
 <?php
 session_start();
 $file_error="";
-$rollno=$_SESSION["user"];;
+$rollno="";
+<?php
+$firstname=$lastname=$dp=$interest=$birth=$gender=$dept="";
+if(isset($_SESSION['user'])
+{
+	$roll=$_SESSION['user'];
+	$db=mysqli_connect("localhost","root","","students");
+	if(mysqli_connect_errno())
+	{
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		exit();
+  } 
+  
+		$sql="SELECT * from login where roll='".$roll."'";
+		$data=mysqli_query($db,$sql);
+		$info=mysqli_fetch_assoc($data);
+			
+		
+				$name=$info["name"];
+			
+				$gender=$info["gender"];
+				switch($info["dept"])
+				{
+					case 'cse':$dept="Computer Science and Engineering";
+					           break;
+					 case 'mech':$dept="Mechanical Engineering";
+					           break;
+					           case 'meta':$dept="Metallurgy and materials and Engineering";
+					           break;
+					           case 'ece':$dept="Electronics and Commnications Engineering";
+					           break;
+					           case 'chem':$dept="Chemical Engineering";
+					           break;
+					           case 'eee':$dept="Electrical and Electronics Engineering";
+					           break;
+              case 'prod':$dept="Production Engineering";
+					           break;
+          
+					
+					}
+				
+				
+	
+	
+	
+	
+	}
+	else {
+		
+	 header("Location:index.php",true,303);
+	 die();
+		
+		}
+
 if(isset($_FILES['photo']['name']))
 	{
 		if(!$_FILES['photo']['error'])
@@ -196,59 +249,7 @@ left:63%;
 </head>
 <body>
 
-<?php
-$firstname=$lastname=$dp=$interest=$birth=$gender=$dept="";
-if($_SESSION['authenticated']==true)
-{
-	
-	$db=mysqli_connect("localhost","root","","students");
-	if(mysqli_connect_errno())
-	{
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		exit();
-  } 
-  $roll=$_SESSION['user'];
-		$sql="SELECT * from login where roll='".$roll."'";
-		$data=mysqli_query($db,$sql);
-		$info=mysqli_fetch_assoc($data);
-			
-		
-				$name=$info["name"];
-			
-				$gender=$info["gender"];
-				switch($info["dept"])
-				{
-					case 'cse':$dept="Computer Science and Engineering";
-					           break;
-					 case 'mech':$dept="Mechanical Engineering";
-					           break;
-					           case 'meta':$dept="Metallurgy and materials and Engineering";
-					           break;
-					           case 'ece':$dept="Electronics and Commnications Engineering";
-					           break;
-					           case 'chem':$dept="Chemical Engineering";
-					           break;
-					           case 'eee':$dept="Electrical and Electronics Engineering";
-					           break;
-              case 'prod':$dept="Production Engineering";
-					           break;
-          
-					
-					}
-				
-				
-	
-	
-	
-	
-	}
-	else {
-		
-	 header("Location:index.php",true,303);
-	 die();
-		
-		}
-?>
+
 
 
     
