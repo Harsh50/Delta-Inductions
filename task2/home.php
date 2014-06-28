@@ -10,10 +10,10 @@ if(isset($_FILES['photo']['name']))
 	         if($_FILES['photo']['size'] > (2*1024000))
 	   	 $file_error="* File size should be less than 2 MB!";
 	   	 
-	   	 else if( !(($_FILES["image"]["type"] == "image/jpeg")|| ($_FILES["image"]["type"] == "image/jpg")
-		|| ($_FILES["image"]["type"] == "image/pjpeg")
-		|| ($_FILES["image"]["type"] == "image/x-png")
-		|| ($_FILES["image"]["type"] == "image/png")) )
+	   	 else if( !(($_FILES["photo"]["type"] == "image/jpeg")|| ($_FILES["photo"]["type"] == "image/jpg")
+		|| ($_FILES["photo"]["type"] == "image/pjpeg")
+		|| ($_FILES["photo"]["type"] == "image/x-png")
+		|| ($_FILES["photo"]["type"] == "image/png")) )
 		  {
 			
 			$file_error="* File format invalid!";
