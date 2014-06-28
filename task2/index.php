@@ -107,7 +107,7 @@ body{
 <div>
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
 <span><?php echo $auth_error?></span><br/><br/>
-Roll Number: <input type="text" name="roll" value="<?php echo $rollno?>"> <span><?php echo $error1?></span><br/><br />
+Roll Number: <input type="text" name="roll" value="<?php echo htmlspecialchars($rollno)?>"> <span><?php echo $error1?></span><br/><br />
 Password: <input type="password" name="pass"  /><span><?php echo $error2?></span><br /><br /><br />
 <img id="captcha_image" src="create_image.php"></img><br /><br />
 <label for='captcha' >Enter the code:</label>
