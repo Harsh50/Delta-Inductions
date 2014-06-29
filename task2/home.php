@@ -59,19 +59,20 @@ if(isset($_FILES['photo']['name']))
 	{
 		if(!$_FILES['photo']['error'])
 	   {
-	   	 $file_name=$_FILES['photo']['tmp_name'];
-	         if($_FILES['photo']['size'] > (2*1024000))
-	   	 $file_error="* File size should be less than 2 MB!";
-	   	 
-	   	 else if( !(($_FILES["photo"]["type"] == "image/jpeg")|| ($_FILES["photo"]["type"] == "image/jpg")
-		|| ($_FILES["photo"]["type"] == "image/pjpeg")
-		|| ($_FILES["photo"]["type"] == "image/x-png")
-		|| ($_FILES["photo"]["type"] == "image/png")) )
-		  {
+	   	 $imageData = @getimagesize($_FILES["photo"]["tmp_name"]);
+	         
+	   	  
+
+         if($imageData === FALSE || !($imageData[2] == IMAGETYPE_GIF || $imageData[2] == IMAGETYPE_JPEG || $imageData[2] == IMAGETYPE_PNG)) 
 			
-			$file_error="* File format invalid!";
+		{	$file_error="* File format invalid!";
 			
 		  }
+		  
+		  
+         else if($_FILES['photo']['size'] > (2*1024000))
+	   	 $file_error="* File size should be less than 2 MB!";
+	   	 
 		  else{
 		  $dirpath=getcwd()."/"."uploads/".$rollno."/";
 		  if(!file_exists($dirpath))
