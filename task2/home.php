@@ -2,8 +2,7 @@
 session_start();
 $file_error="";
 $rollno="";
-<?php
-$firstname=$lastname=$dp=$interest=$birth=$gender=$dept="";
+
 if(isset($_SESSION['user'])
 {
 	$roll=$_SESSION['user'];
