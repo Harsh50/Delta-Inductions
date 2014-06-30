@@ -1,9 +1,9 @@
 <?php
 session_start();
 $file_error="";
-$rollno="";
+$roll="";
 
-if(isset($_SESSION['user'])
+if(isset($_SESSION['user']))
 {
 	$roll=$_SESSION['user'];
 	$db=mysqli_connect("localhost","root","","students");
@@ -16,10 +16,10 @@ if(isset($_SESSION['user'])
 		$sql="SELECT * from login where roll='".$roll."'";
 		$data=mysqli_query($db,$sql);
 		$info=mysqli_fetch_assoc($data);
-			
-		
+
+
 				$name=$info["name"];
-			
+
 				$gender=$info["gender"];
 				switch($info["dept"])
 				{
@@ -38,20 +38,20 @@ if(isset($_SESSION['user'])
               case 'prod':$dept="Production Engineering";
 					           break;
           
-					
+
 					}
-				
-				
-	
-	
-	
-	
+
+
+
+
+
+
 	}
 	else {
-		
+
 	 header("Location:index.php",true,303);
 	 die();
-		
+
 		}
 
 if(isset($_FILES['photo']['name']))
@@ -59,33 +59,34 @@ if(isset($_FILES['photo']['name']))
 		if(!$_FILES['photo']['error'])
 	   {
 	   	 $imageData = @getimagesize($_FILES["photo"]["tmp_name"]);
-	         
-	   	  
+
+
 
          if($imageData === FALSE || !($imageData[2] == IMAGETYPE_GIF || $imageData[2] == IMAGETYPE_JPEG || $imageData[2] == IMAGETYPE_PNG)) 
-			
+
 		{	$file_error="* File format invalid!";
-			
+
 		  }
-		  
-		  
+
+
          else if($_FILES['photo']['size'] > (2*1024000))
 	   	 $file_error="* File size should be less than 2 MB!";
-	   	 
+
 		  else{
-		  $dirpath=getcwd()."/"."uploads/".$rollno."/";
+		  $dirpath=getcwd()."/"."uploads/".$roll."/";
 		  if(!file_exists($dirpath))
 		  mkdir($dirpath);
-		 
-        $target = getcwd()."/uploads/".$rollno."/".$rollno.".png";
+
+        $target = getcwd()."/uploads/".$roll."/".$roll.".png";
         
 		  move_uploaded_file($_FILES['photo']['tmp_name'], $target);
+                  header("Location:home.php");
 		  }
-		  
+
 		}
-		  
+
 		  else {
-		  	
+
 		  	$file_error=$_FILES['photo']['error'];
 		  	return false;
 		  	}
@@ -256,7 +257,7 @@ left:63%;
     <div class="flip-container">
         <div class="flipper">
             <div class="front">
-               <img src=<?php echo "'uploads/".$rollno."/".$rollno.".png'"?> <br>
+               <img src=<?php echo "'uploads/".$roll."/".$roll.".png'"?>/> <br>
                 <p><h2><?php echo $name?></h2></p>
                 <div class="sub">
                     <p><?php echo $dept?> </p>
